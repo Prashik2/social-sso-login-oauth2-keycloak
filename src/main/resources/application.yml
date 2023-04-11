@@ -1,0 +1,51 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: Iv1.731596c579d3b990
+            clientSecret: 1a16900f622b3b74d6d2e1efa40c53a63ad8705d
+          google:
+            clientId: 700086744673-keplb3hc6ere9uiqddg4aleho4i08g37.apps.googleusercontent.com
+            clientSecret: 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
+          keycloak:
+             clientId: dummyclient
+             #VJRrdZ5LcWHSATwDvmNAZzoHPxguKpii
+             clientSecret: VJRrdZ5LcWHSATwDvmNAZzoHPxguKpii
+             #i0B9LazRTIM6klkkLcuvhIdKCSzwC8DL
+             scope: openid
+             redirect-uri: https://e7ac-116-74-162-141.ngrok-free.app/api/v1/demo/user
+             #http://localhost:8081/api/demo/welcome
+             authorization-grant-type: authorization_code
+        provider:
+           keycloak:
+              issuer-uri: http://localhost:8080/realms/cognologix
+              user-name-attribute: preferred_username
+              authorization-uri: http://localhost:8080/realms/cognologix/protocol/openid-connect/auth
+              token-uri: http://localhost:8080/realms/cognologix/protocol/openid-connect/token
+              jwk-set-uri: http://localhost:8080/realms/cognologix/protocol/openid-connect/certs
+              user-info-uri: http://localhost:8080/realms/cognologix/protocol/openid-connect/userinfo
+      resourceserver:
+        opaque-token:
+          introspection-uri: http://localhost:8080/realms/cognologix/protocol/openid-connect/token/introspect
+          client-id: dummyclient
+          client-secret: VJRrdZ5LcWHSATwDvmNAZzoHPxguKpii
+        jwt:
+          issuer-uri: http://localhost:8080/realms/cognologix         
+
+app:
+  cors:
+    allowed-origins: http://localhost:8080
+
+server: 
+   port: 8081
+   
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.http: DEBUG
+    org.keycloak: DEBUG
+    #org.springframework.security: DEBUG
+    #org.springframework.http: DEBUG
+   
